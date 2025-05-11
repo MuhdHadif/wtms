@@ -125,6 +125,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       return;
     }
 
+    bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+    if (!emailValid){
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Email is invalid"),
+      ));
+      return;
+    }
+
     if (password != confirmPassword){
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Passwords do not match."),
