@@ -89,11 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: 400,
                       child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          foregroundColor: Colors.white,
-                          side: BorderSide(width: 0.0, color: const Color.fromARGB(255, 33, 150, 243)),
-                        ),
+                        style: Style.outlinedButton,
                         onPressed: loginUser,
                         child: const Text("Login"),
                       )

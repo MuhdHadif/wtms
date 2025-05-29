@@ -85,11 +85,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 SizedBox(
                   width: 400,
                   child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      foregroundColor: Colors.white,
-                      side: BorderSide(width: 0.0, color: Colors.blue),
-                    ),
+                    style: Style.outlinedButton,
                     onPressed: registerUserDialog,
                     child: const Text("Register"),
                   )

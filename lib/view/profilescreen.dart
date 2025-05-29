@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wtms/model/User.dart';
 import 'package:wtms/style/style.dart';
+import 'package:wtms/util/util.dart';
 import 'package:wtms/view/loginscreen.dart';
+import 'package:wtms/view/taskscreen.dart';
 
 class ProfileScreen extends StatefulWidget{
   final User user;
@@ -41,12 +43,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Image.asset("assets/images/worker_icon.png", scale: 2.2),
-                  createTextField("Worker ID", "${widget.user.id}", idController),
-                  createTextField("Full name", "${widget.user.fullName}", nameController),
-                  createTextField("Email", "${widget.user.email}", emailController),
-                  createTextField("Phone number", "${widget.user.phoneNum}", phoneController),
-                  createTextField("Address", "${widget.user.address}", addressController, 3),
+                  Image.asset("assets/images/worker_icon.png", scale: 3.5),
+                  Util.createTextField("Worker ID", "${widget.user.id}", idController),
+                  Util.createTextField("Full name", "${widget.user.fullName}", nameController),
+                  Util.createTextField("Email", "${widget.user.email}", emailController),
+                  Util.createTextField("Phone number", "${widget.user.phoneNum}", phoneController),
+                  Util.createTextField("Address", "${widget.user.address}", addressController, 3),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                      style: Style.outlinedButton,
+                      onPressed: (){
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(builder: (context) => Taskscreen(user: widget.user))
+                        );
+                      },
+                      child: const Text("View tasks"),
+                    )
+                  )
                 ].map((widget) => Padding(
                   padding: const EdgeInsets.all(5),
                   child: widget,
@@ -90,19 +105,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         );
       }
-    );
-  }
-
-  TextField createTextField(String label, String content, TextEditingController controller, [int maxLines = 1]){
-    controller.text = content;
-    return TextField(
-      enabled: false,
-      controller: controller,
-      decoration: Style.textFieldDecoration.copyWith(
-        labelText: label
-      ),
-      maxLines: maxLines,
-      style: TextStyle(color: Colors.black)
     );
   }
 }

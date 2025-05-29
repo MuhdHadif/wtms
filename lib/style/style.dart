@@ -21,4 +21,10 @@ class Style {
       color: Colors.black,
     ),
   );
+
+  static ButtonStyle outlinedButton = OutlinedButton.styleFrom(
+    backgroundColor: Colors.blue,
+    foregroundColor: Colors.white,
+    side: BorderSide(width: 0.0, color: Colors.blue),
+  );
 }
