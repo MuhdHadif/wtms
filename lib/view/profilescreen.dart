@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wtms/model/User.dart';
+import 'package:wtms/style/style.dart';
 // import 'package:wtms/style/style.dart';
 import 'package:wtms/util/util.dart';
 import 'package:wtms/view/loginscreen.dart';
@@ -31,45 +32,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile Screen", style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Style.themeColor,
         actions: [
           IconButton(onPressed: logoutUser, icon: Icon(Icons.logout), color: Colors.white, highlightColor: Colors.red)
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Image.asset("assets/images/worker_icon.png", scale: 3.5),
-                  Util.createTextField("Worker ID", "${widget.user.id}", idController),
-                  Util.createTextField("Full name", "${widget.user.fullName}", nameController),
-                  Util.createTextField("Email", "${widget.user.email}", emailController),
-                  Util.createTextField("Phone number", "${widget.user.phoneNum}", phoneController),
-                  Util.createTextField("Address", "${widget.user.address}", addressController, 3),
-                  // SizedBox(
-                  //   width: double.infinity,
-                  //   child: OutlinedButton(
-                  //     style: Style.outlinedButton,
-                  //     onPressed: (){
-                  //       Navigator.push(
-                  //         context, 
-                  //         MaterialPageRoute(builder: (context) => Taskscreen(user: widget.user))
-                  //       );
-                  //     },
-                  //     child: const Text("View tasks"),
-                  //   )
-                  // )
-                ].map((widget) => Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: widget,
-                )).toList(),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Image.asset("assets/images/worker_icon.png", scale: 3.5),
+                    Util.createTextField("Worker ID", "${widget.user.id}", idController),
+                    Util.createTextField("Full name", "${widget.user.fullName}", nameController),
+                    Util.createTextField("Email", "${widget.user.email}", emailController),
+                    Util.createTextField("Phone number", "${widget.user.phoneNum}", phoneController),
+                    Util.createTextField("Address", "${widget.user.address}", addressController, 3),
+                  ].map((widget) => Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: widget,
+                  )).toList(),
+                ),
               ),
-            ),
-          ],
-        )
+            ],
+          )
+        ),
       ),
     );
   }

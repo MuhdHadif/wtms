@@ -3,28 +3,29 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-// import 'package:wtms/model/User.dart';
-import 'package:wtms/model/work.dart';
+import 'package:wtms/model/submission.dart';
 import 'package:wtms/myconfig.dart';
 import 'package:wtms/style/style.dart';
 import 'package:wtms/util/util.dart';
 
-class Tasksubmitscreen extends StatefulWidget {
-  final Work work;
-  const Tasksubmitscreen({super.key, required this.work});
+class Tasksubmiteditscreen extends StatefulWidget {
+  final Submission submission;
+  const Tasksubmiteditscreen({ super.key, required this.submission });
 
   @override
-  State<Tasksubmitscreen> createState() => _TasksubmitscreenState();
+  State<Tasksubmiteditscreen> createState() => _TasksubmiteditscreenState();
 }
 
-class _TasksubmitscreenState extends State<Tasksubmitscreen> {
+class _TasksubmiteditscreenState extends State<Tasksubmiteditscreen> {
   TextEditingController submissionTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    submissionTextController.text = widget.submission.submissionText.toString();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Submit Task Completion", style: TextStyle(color: Colors.white),),
+        title: const Text("Edit task submission", style: TextStyle(color: Colors.white),),
         backgroundColor: Style.themeColor,
       ),
       body: SingleChildScrollView(
@@ -33,9 +34,9 @@ class _TasksubmitscreenState extends State<Tasksubmitscreen> {
             padding: EdgeInsets.all(16.0),
             child: Column(
               children: [
-                Image.asset("assets/images/task_icon.png", scale: 6),
+                Image.asset("assets/images/submission_icon.png", scale: 6),
                 Text(
-                  widget.work.title.toString(),
+                  widget.submission.title.toString(),
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -43,13 +44,12 @@ class _TasksubmitscreenState extends State<Tasksubmitscreen> {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  widget.work.description.toString(),
+                  "Submitted at\n${widget.submission.submittedAt.toString()}",
                   style: TextStyle(
                     fontSize: 20,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                // Util.createTextField("Title", widget.work.title.toString(), TextEditingController()),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
                   child: Util.createInputField("What did you complete?", submissionTextController),
@@ -59,9 +59,9 @@ class _TasksubmitscreenState extends State<Tasksubmitscreen> {
                   child: OutlinedButton(
                     style: Style.outlinedButton,
                     onPressed: (){
-                      submitworkdialog();
+                      editsubmissiondialog();
                     },
-                    child: const Text("Submit task"),
+                    child: const Text("Confirm edit"),
                   ),
                 )
               ]
@@ -72,25 +72,23 @@ class _TasksubmitscreenState extends State<Tasksubmitscreen> {
     );
   }
 
-  void submitworkdialog(){
+  void editsubmissiondialog(){
     if (submissionTextController.text.isEmpty){
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Please enter submission details."),
       ));
       return;
     }
-    submitwork();
+    editsubmission();
   }
 
-  void submitwork(){
-    String workId = widget.work.id.toString();
-    String workerId = widget.work.assignedTo.toString();
+  void editsubmission(){
+    String submissionId = widget.submission.id.toString();
     String submissionText = submissionTextController.text;
 
-    http.post(Uri.parse("${MyConfig.myUrl}wtms/php/submit_work.php"), body: {
+    http.post(Uri.parse("${MyConfig.myUrl}wtms/php/edit_submission.php"), body: {
       "submit" : "true",
-      "workId" : workId,
-      "workerId" : workerId,
+      "submissionId" : submissionId,
       "submissionText" : submissionText
     }).then((response){
       // Success
@@ -109,7 +107,7 @@ class _TasksubmitscreenState extends State<Tasksubmitscreen> {
 
       // Fail
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Submission failed, please try again."),
+        content: Text("Edit failed, please try again."),
         backgroundColor: Colors.red,
       ));
     });

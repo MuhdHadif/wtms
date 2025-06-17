@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Text(
                       "WTMS",
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: Style.themeColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 50
                       ),
@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   MaterialPageRoute(builder: (context) => RegistrationScreen())
                 );
               }, 
-              child: Text("Register an account.", style: TextStyle(color: Colors.blue),)),
+              child: Text("Register an account.", style: TextStyle(color: Style.themeColor),)),
             ],
           )
         ),

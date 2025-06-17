@@ -34,7 +34,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Text(
                   "WTMS",
                   style: TextStyle(
-                    color: Colors.blue,
+                    color: Style.themeColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 40
                   ),

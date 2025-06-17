@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:wtms/model/User.dart';
+import 'package:wtms/style/style.dart';
 import 'package:wtms/view/profilescreen.dart';
 import 'package:wtms/view/taskhistoryscreen.dart';
 import 'package:wtms/view/taskscreen.dart';
@@ -15,7 +16,7 @@ class Mainscreen extends StatefulWidget {
 }
 
 class _MainscreenState extends State<Mainscreen> {
-  int selectedIndex = 0;
+  int selectedIndex = 2;
   void onTap(int index) {
       if (selectedIndex != index) {
         setState(() {
@@ -26,9 +27,9 @@ class _MainscreenState extends State<Mainscreen> {
     }
 
     final destinations = const [
-      BottomNavigationBarItem(icon: Icon(Icons.task), label: "Tasks", backgroundColor: Colors.lightBlue),
-      BottomNavigationBarItem(icon: Icon(Icons.history), label: "History", backgroundColor: Colors.lightBlue),
-      BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile", backgroundColor: Colors.lightBlue),
+      BottomNavigationBarItem(icon: Icon(Icons.task), label: "Tasks", backgroundColor: Style.themeColor),
+      BottomNavigationBarItem(icon: Icon(Icons.history), label: "History", backgroundColor: Style.themeColor),
+      BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile", backgroundColor: Style.themeColor),
     ];
 
   @override

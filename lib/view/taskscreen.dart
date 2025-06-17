@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:wtms/model/User.dart';
 import 'package:wtms/model/work.dart';
 import 'package:wtms/myconfig.dart';
+import 'package:wtms/style/style.dart';
 import 'package:wtms/util/util.dart';
 import 'package:wtms/view/tasksubmitscreen.dart';
 
@@ -31,7 +32,7 @@ class _TaskscreenState extends State<Taskscreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Assigned Tasks", style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Style.themeColor,
       ),
       body: Center(
         child: Padding(
@@ -74,6 +75,7 @@ class _TaskscreenState extends State<Taskscreen> {
         child: Padding(
           padding: const EdgeInsets.all(6.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset("assets/images/task_icon.png", scale: 7.5),
               Flexible(
@@ -104,7 +106,7 @@ class _TaskscreenState extends State<Taskscreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8),
+                padding: const EdgeInsets.only(left: 30, right: 8),
                 child: Image.asset("assets/images/chevron_right_icon.png", scale: 2),
               ),
             ]

@@ -23,8 +23,10 @@ class Style {
   );
 
   static ButtonStyle outlinedButton = OutlinedButton.styleFrom(
-    backgroundColor: Colors.blue,
+    backgroundColor: Style.themeColor,
     foregroundColor: Colors.white,
-    side: BorderSide(width: 0.0, color: Colors.blue),
+    side: BorderSide(width: 0.0, color: Style.themeColor),
   );
+
+  static const Color themeColor = Color.fromRGBO(25, 118, 210, 1);
 }

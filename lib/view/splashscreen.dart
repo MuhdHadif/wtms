@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:wtms/model/User.dart';
 import 'package:wtms/myconfig.dart';
+import 'package:wtms/style/style.dart';
 import 'package:wtms/view/loginscreen.dart';
 import 'package:wtms/view/mainscreen.dart';
 // import 'package:wtms/view/profilescreen.dart';
@@ -38,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen>{
                 maxLines: 3,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.blue,
+                  color: Style.themeColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 40,
                 ),
@@ -47,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen>{
                 padding: const EdgeInsets.only(top: 100),
                 child: const LinearProgressIndicator(
                   backgroundColor: Colors.white,
-                  valueColor: AlwaysStoppedAnimation(Colors.blue)
+                  valueColor: AlwaysStoppedAnimation(Style.themeColor)
                 ),
               )
             ]
