@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:wtms/model/User.dart';
 import 'package:wtms/myconfig.dart';
 import 'package:wtms/view/loginscreen.dart';
-import 'package:wtms/view/profilescreen.dart';
+import 'package:wtms/view/mainscreen.dart';
+// import 'package:wtms/view/profilescreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -74,14 +75,14 @@ class _SplashScreenState extends State<SplashScreen>{
           if (jsondata["status"] == "success"){
             var userData = jsondata['data'];
             User user = User.fromJson(userData[0]);
-            print(user.fullName);
 
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text("Welcome, ${user.fullName}"),
               backgroundColor: Colors.green,
             ));
             
-            toProfileScreen(user);
+            // toProfileScreen(user);
+            toMainScreen(user);
           } else {
             User user = User(
               id: '0',
@@ -118,11 +119,19 @@ class _SplashScreenState extends State<SplashScreen>{
     });
   }
 
-  void toProfileScreen(User user){
+  // void toProfileScreen(User user){
+  //   Future.delayed(const Duration(seconds: 3), () async {
+  //     Navigator.pushReplacement(
+  //       context, 
+  //       MaterialPageRoute(builder: (context) => ProfileScreen(user: user)));
+  //   });
+  // }
+
+  void toMainScreen(User user){
     Future.delayed(const Duration(seconds: 3), () async {
       Navigator.pushReplacement(
         context, 
-        MaterialPageRoute(builder: (context) => ProfileScreen(user: user)));
+        MaterialPageRoute(builder: (context) => Mainscreen(user: user)));
     });
   }
 }

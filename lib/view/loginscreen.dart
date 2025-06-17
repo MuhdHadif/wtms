@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:wtms/model/User.dart';
 import 'package:wtms/myconfig.dart';
 import 'package:wtms/style/style.dart';
-import 'package:wtms/view/profilescreen.dart';
+import 'package:wtms/view/mainscreen.dart';
+// import 'package:wtms/view/profilescreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wtms/view/registrationscreen.dart';
 
@@ -146,7 +147,8 @@ class _LoginScreenState extends State<LoginScreen> {
           ));
           Navigator.pushReplacement(
             context, 
-            MaterialPageRoute(builder: (context) => ProfileScreen(user: user))
+            // MaterialPageRoute(builder: (context) => ProfileScreen(user: user))
+            MaterialPageRoute(builder: (context) => Mainscreen(user: user))
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

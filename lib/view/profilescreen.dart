@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wtms/model/User.dart';
-import 'package:wtms/style/style.dart';
+// import 'package:wtms/style/style.dart';
 import 'package:wtms/util/util.dart';
 import 'package:wtms/view/loginscreen.dart';
-import 'package:wtms/view/taskscreen.dart';
+// import 'package:wtms/view/taskscreen.dart';
 
 class ProfileScreen extends StatefulWidget{
   final User user;
@@ -49,19 +49,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Util.createTextField("Email", "${widget.user.email}", emailController),
                   Util.createTextField("Phone number", "${widget.user.phoneNum}", phoneController),
                   Util.createTextField("Address", "${widget.user.address}", addressController, 3),
-                  SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton(
-                      style: Style.outlinedButton,
-                      onPressed: (){
-                        Navigator.push(
-                          context, 
-                          MaterialPageRoute(builder: (context) => Taskscreen(user: widget.user))
-                        );
-                      },
-                      child: const Text("View tasks"),
-                    )
-                  )
+                  // SizedBox(
+                  //   width: double.infinity,
+                  //   child: OutlinedButton(
+                  //     style: Style.outlinedButton,
+                  //     onPressed: (){
+                  //       Navigator.push(
+                  //         context, 
+                  //         MaterialPageRoute(builder: (context) => Taskscreen(user: widget.user))
+                  //       );
+                  //     },
+                  //     child: const Text("View tasks"),
+                  //   )
+                  // )
                 ].map((widget) => Padding(
                   padding: const EdgeInsets.all(5),
                   child: widget,
