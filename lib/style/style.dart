@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Style {
-  static const InputDecoration inputDecoration = InputDecoration(
+  static const InputDecoration textFieldDecoration= InputDecoration(
     filled: true,
     fillColor: Color.fromARGB(255, 246, 246, 246),
     border: OutlineInputBorder(     
@@ -12,9 +12,12 @@ class Style {
     )
   );
 
-  static const InputDecoration textFieldDecoration = InputDecoration(
+  static const InputDecoration inputDecoration = InputDecoration(
     border: OutlineInputBorder(     
       borderSide: BorderSide(color: Colors.black)
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Style.themeColor)
     ),
     labelStyle: TextStyle(
       fontWeight: FontWeight.bold,

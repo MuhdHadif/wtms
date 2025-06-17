@@ -12,6 +12,18 @@ class Util {
     );
   }
 
+  static TextField createFilledInputField(String label, String content, TextEditingController controller, [int maxLines = 1]){
+    controller.text = content;
+    return TextField(
+      controller: controller,
+      decoration: Style.inputDecoration.copyWith(
+        labelText: label
+      ),
+      maxLines: maxLines,
+      keyboardType: TextInputType.text,
+    );
+  }
+
   static TextField createTextField(String label, String content, TextEditingController controller, [int maxLines = 1, double maxWidth = double.infinity]){
     controller.text = content;
     return TextField(

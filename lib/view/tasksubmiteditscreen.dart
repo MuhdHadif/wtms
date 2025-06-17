@@ -79,7 +79,30 @@ class _TasksubmiteditscreenState extends State<Tasksubmiteditscreen> {
       ));
       return;
     }
-    editsubmission();
+
+    showDialog(
+      context: context, 
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: const Text("Are you sure you want to edit this submission?"),
+          actions: [
+            TextButton(
+              child: const Text("Confirm edit"),
+              onPressed: (){
+                Navigator.of(context).pop();
+                editsubmission();
+              }
+            ),
+            TextButton(
+              child: const Text("Cancel"),
+              onPressed: (){
+                Navigator.of(context).pop();
+              }
+            )
+          ],
+        );
+      }
+    );
   }
 
   void editsubmission(){
@@ -107,7 +130,7 @@ class _TasksubmiteditscreenState extends State<Tasksubmiteditscreen> {
 
       // Fail
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Edit failed, please try again."),
+        content: Text("Failed to edit submission, please try again."),
         backgroundColor: Colors.red,
       ));
     });

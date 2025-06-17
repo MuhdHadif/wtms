@@ -37,7 +37,7 @@ class _MainscreenState extends State<Mainscreen> {
     final list = [
       Taskscreen(user: widget.user), 
       Taskhistoryscreen(user: widget.user),
-      ProfileScreen(user: widget.user),
+      ProfileScreen(userId: widget.user.id.toString()),
     ];
 
     return Scaffold(

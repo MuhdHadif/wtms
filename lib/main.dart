@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wtms/style/style.dart';
 import 'package:wtms/view/splashscreen.dart';
 
 void main() {
@@ -14,6 +15,11 @@ class MainApp extends StatelessWidget {
       title: 'Worker Task Management System',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Style.themeColor,
+          selectionHandleColor: Style.themeColor,
+          selectionColor: Colors.blue.shade100,
+        ),
       ),
       home: SplashScreen()
     );

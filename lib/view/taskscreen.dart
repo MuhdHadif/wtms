@@ -37,13 +37,21 @@ class _TaskscreenState extends State<Taskscreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: ListView.builder(
-            itemCount: workList.length,
-            itemBuilder: (context, index) => createWorkCard(index)
-          ),
+          child: listItems()
         )
       ),
     );
+  }
+
+  Widget listItems(){
+    if (workList.isEmpty){
+      return const Text("No tasks available.");
+    } else {
+      return ListView.builder(
+        itemCount: workList.length,
+        itemBuilder: (context, index) => createWorkCard(index)
+      );
+    }
   }
 
   GestureDetector createWorkCard(int index){
@@ -79,30 +87,33 @@ class _TaskscreenState extends State<Taskscreen> {
             children: [
               Image.asset("assets/images/task_icon.png", scale: 7.5),
               Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      workList[index].title.toString(),
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                child: SizedBox(
+                  width: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        workList[index].title.toString(),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      workList[index].description.toString(),
-                      style: TextStyle(
-                        fontSize: 13,
+                      Text(
+                        workList[index].description.toString(),
+                        style: TextStyle(
+                          fontSize: 13,
+                        ),
                       ),
-                    ),
-                    Text(
-                      statusText,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey
+                      Text(
+                        statusText,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Padding(
@@ -131,10 +142,10 @@ class _TaskscreenState extends State<Taskscreen> {
             workList.add(work);
           });
         }
-        setState(() {
-          
-        });
       }
+      setState(() {
+          
+      });
     });
   }
 }

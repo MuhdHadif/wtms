@@ -37,17 +37,24 @@ class _TaskhistoryscreenState extends State<Taskhistoryscreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: ListView.builder(
-            itemCount: submissionList.length,
-            itemBuilder: (context, index) => createWorkCard(index)
-          ),
+          child: listItems()
         )
       ),
     );
   }
 
-  GestureDetector createWorkCard(int index){
+  Widget listItems(){
+    if (submissionList.isEmpty){
+      return const Text("No tasks available.");
+    } else {
+      return ListView.builder(
+        itemCount: submissionList.length,
+        itemBuilder: (context, index) => createWorkCard(index)
+      );
+    }
+  }
 
+  GestureDetector createWorkCard(int index){
     return GestureDetector(
       onTap: () async {
         await Navigator.push(
@@ -65,30 +72,34 @@ class _TaskhistoryscreenState extends State<Taskhistoryscreen> {
             children: [
               Image.asset("assets/images/submission_icon.png", scale: 7.5),
               Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      submissionList[index].title.toString(),
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                child: SizedBox(
+                  width: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        submissionList[index].title.toString(),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      "\"${submissionList[index].submissionText.toString()}\"",
-                      style: TextStyle(
-                        fontSize: 13,
+                      Text(
+                        "\"${submissionList[index].submissionText.toString()}\"",
+                        style: TextStyle(
+                          fontSize: 13,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    Text(
-                      "Submitted at\n${submissionList[index].submittedAt.toString()}",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey
+                      Text(
+                        "Submitted at\n${submissionList[index].submittedAt.toString()}",
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Padding(
@@ -118,10 +129,10 @@ class _TaskhistoryscreenState extends State<Taskhistoryscreen> {
             submissionList.add(s);
           });
         }
-        setState(() {
-          
-        });
       }
+      setState(() {
+          
+      });
     });
   }
 }
