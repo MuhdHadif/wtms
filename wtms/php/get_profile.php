@@ -3,8 +3,8 @@
 include_once("dbconnect.php");
 
 $workerId = $_POST['workerId'];
-$sqlgetworks = "SELECT * FROM `works` WHERE `assignedTo`='$workerId' AND `status`='pending'";
-$result = $conn->query($sqlgetworks);
+$sqlgetprofile = "SELECT * FROM `workers` WHERE `id`='$workerId'";
+$result = $conn->query($sqlgetprofile);
 
 if ($result->num_rows > 0) {
     $sentArray = array();
