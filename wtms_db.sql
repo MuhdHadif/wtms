@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Database: `wtms_db`
 --
 
+CREATE DATABASE `wtms_db`;
+USE `wtms_db`;
+
 -- --------------------------------------------------------
 
 --
