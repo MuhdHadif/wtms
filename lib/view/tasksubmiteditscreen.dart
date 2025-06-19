@@ -127,8 +127,9 @@ class _TasksubmiteditscreenState extends State<Tasksubmiteditscreen> {
           return;
         } 
       }
-
+    }).catchError((e){
       // Fail
+      log(e.toString());
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Failed to edit submission, please try again."),
         backgroundColor: Colors.red,

@@ -106,7 +106,7 @@ class _TasksubmitscreenState extends State<Tasksubmitscreen> {
           return;
         } 
       }
-
+    }).catchError((e){
       // Fail
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Submission failed, please try again."),

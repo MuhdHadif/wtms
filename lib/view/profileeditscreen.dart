@@ -155,7 +155,7 @@ class _ProfileeditscreenState extends State<Profileeditscreen> {
           return;
         }
       }
-
+    }).catchError((e){
       // Fail
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Failed to edit profile, please try again."),
